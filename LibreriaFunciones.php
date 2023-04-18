@@ -186,5 +186,168 @@ function creacionTablaDatos($tipoDeDato, $data)
     </table>";
 
     #echo "</div";
+
+
+
+    function creacionTablaDatosDiaYNoche($tipoDeDato, $data)
+{
+    // Creación de la cabecera HTML
+    echo "<table>";
+    echo "<caption>$tipoDeDato</caption>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Date</th>";
+    echo "<th>Time</th>";
+    foreach ($data as $claveExterior => $arrayInterior) {
+        echo "<th>Box " . $claveExterior  . "<br>" . "(Animal no." . $arrayInterior[$claveExterior]['animals_no'] . ")" . "</th>";
+    }
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+
+    // Inicializamos un arreglo temporal para almacenar las filas que cumplen el criterio
+    $filas_dia = array();
+    // Recorremos las filas y creamos las celdas para cada columna
+    foreach ($data as $claveExterior => $arrayInterior) {
+        // Obtenemos el número de filas necesarias para esta caja
+        $num_filas = count($arrayInterior);
+    }
+        for ($i = 0; $i < $num_filas; $i++) {
+            // Agregamos fecha y hora
+            $fila = "<tr>";
+            $fila .= "<td>" . $arrayInterior[$i]['dates'] . "</td>";
+            $fila .= "<td>" . $arrayInterior[$i]['time_'] . "</td>";
+            // Agregamos los datos de cada caja
+            foreach ($data as $arrayInterior2) {
+                if ($arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
+                    $fila .= "<td style='background-color: #C8C8C8;'>";
+                } else {
+                    $fila .= "<td>";
+                }
+                if (isset($arrayInterior2[$i])) {
+                    $fila .= $arrayInterior2[$i][$tipoDeDato] . "<br>";
+                }
+                $fila .= "</td>";
+            }
+            $fila .= "</tr>";
+            // Agregamos la fila al arreglo temporal correspondiente
+            if ($arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
+                $filas_dia[] = $fila;
+            } else {
+                echo $fila;
+            }
+        }
     
+
+    // Imprimimos las filas que cumplen el criterio de horario
+    foreach ($filas_dia as $fila) {
+        echo $fila;
+    }
+
+    echo "</tbody>";
+    echo "</table>";
+}
+
+
+
+
+
+
+
+
+function creacionTablaDatosDiaYNocheSaltandoHastaLasOcho($tipoDeDato, $data)
+{
+ 
+    // Creación de la cabecera HTML
+    echo "<table>";
+    echo "<caption>$tipoDeDato</caption>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Date</th>";
+    echo "<th>Time</th>";
+    foreach ($data as $claveExterior => $arrayInterior) {
+        echo "<th>Box " . $claveExterior  . "<br>" . "(Animal no." . $arrayInterior[$claveExterior]['animals_no'] . ")" . "</th>";
+    }
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+
+    // Inicializamos un arreglo temporal para almacenar las filas que cumplen el criterio
+    $filas_dia = array();
+
+    // Recorremos las filas y creamos las celdas para cada columna
+    foreach ($data as $claveExterior => $arrayInterior) {
+        // Obtenemos el número de filas necesarias para esta caja
+        $num_filas = count($arrayInterior);
+        echo($arrayInterior[0+50]['dates']);
+
+    }
+        // Variable para indicar si se ha encontrado la primera fila que cumple el criterio
+        $start_found = false;
+        $first_different_date= "";
+        
+
+        //FUNCION PARA ENCONTRAR LA PRIMERA FECHA Y LA PRIMERA DISTINTA (PREGUNTAR SI SIEMPRE LAS CAJAS EMPIEZAN EN 1)
+        $first_date = $data[1][0]['dates']; // obtener la primera fecha de la lista
+        for ($i = 1; $i < count($data); $i++) { // use count($data) instead of count($data[0]['dates'])
+            for ($j = 1; $j < count($data); $j++) { 
+            if ($data[$i][$j]['dates'] != $first_date) {
+                $first_different_date = $data[$i][$j]['dates']; // si la fecha es diferente, asignarla a una variable y salir del bucle
+                break;
+            }
+        }
+    }
+       
+        echo("<br>".$first_different_date ."<br>");
+        echo("<br>".$first_date);
+
+        for ($i = 0; $i < $num_filas; $i++) {
+            // Comprobamos si la fila cumple el criterio de horario
+            if ($arrayInterior[$i]['dates'] <= $first_date || ($arrayInterior[$i]['dates'] == $first_different_date && $arrayInterior[$i]['time_'] <= "08:00")) {
+            }
+            else{
+                // Si la primera fila que cumple el criterio no ha sido encontrada, la encontramos y cambiamos el valor de la variable
+                if (!$start_found) {
+                    $start_found = true;
+                }
+
+                // Agregamos fecha y hora
+                $fila = "<tr>";
+                $fila .= "<td>" . $arrayInterior[$i]['dates'] . "</td>";
+                $fila .= "<td>" . $arrayInterior[$i]['time_'] . "</td>";
+
+                // Agregamos los datos de cada caja
+                foreach ($data as $arrayInterior2) {
+                    if ($arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
+                        $fila .= "<td style='background-color: #C8C8C8;'>";
+                    } else {
+                        $fila .= "<td>";
+                    }
+                    if (isset($arrayInterior2[$i])) {
+                        $fila .= $arrayInterior2[$i][$tipoDeDato] . "<br>";
+                    }
+                    $fila .= "</td>";
+                }
+                $fila .= "</tr>";
+
+                // Si la primera fila que cumple el criterio ha sido encontrada, agregamos la fila al arreglo temporal correspondiente
+                if ($start_found && $arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
+                    $filas_dia[] = $fila;
+                } else {
+                    echo $fila;
+                }
+}
+            
+    }
+
+    // Imprimimos las filas que cumplen el criterio de horario
+    foreach ($filas_dia as $fila) {
+        echo $fila;
+    }
+
+    echo "</tbody>";
+    echo "</table>";
+}
+
+
 
