@@ -249,15 +249,9 @@ function creacionTablaDatos($tipoDeDato, $data)
 }
 
 
-
-
-
-
-
-
 function creacionTablaDatosDiaYNocheSaltandoHastaLasOcho($tipoDeDato, $data)
 {
- 
+
     // Creación de la cabecera HTML
     echo "<table>";
     echo "<caption>$tipoDeDato</caption>";
@@ -279,7 +273,6 @@ function creacionTablaDatosDiaYNocheSaltandoHastaLasOcho($tipoDeDato, $data)
     foreach ($data as $claveExterior => $arrayInterior) {
         // Obtenemos el número de filas necesarias para esta caja
         $num_filas = count($arrayInterior);
-        echo($arrayInterior[0+50]['dates']);
 
     }
         // Variable para indicar si se ha encontrado la primera fila que cumple el criterio
@@ -297,9 +290,6 @@ function creacionTablaDatosDiaYNocheSaltandoHastaLasOcho($tipoDeDato, $data)
             }
         }
     }
-       
-        echo("<br>".$first_different_date ."<br>");
-        echo("<br>".$first_date);
 
         for ($i = 0; $i < $num_filas; $i++) {
             // Comprobamos si la fila cumple el criterio de horario
