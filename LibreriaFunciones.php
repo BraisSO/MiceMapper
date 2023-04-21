@@ -603,15 +603,6 @@ echo "<tr>";
 echo "<th>Media</th>";
 echo "<th></th>";
 foreach ($data as $claveExterior => $arrayInterior) {
-    #A MEDIA FUNCIONA CORRECTAMENTE -> ENCONTRAR POR CULPA DO ARRAY E SI ESO QUE SE IMPRIMAN EN ORDEN DE DIA E NOITE
-    ####################
-    ######################
-    #######################
-   # print("<pre>".print_r($valores_dia[],true)."</pre>"); 
-   # print("<pre>".print_r($valores_noche,true)."</pre>");  
-   # print("<pre>".print_r($claveExterior,true)."</pre>");   
-
-
     $total_dia = is_array($valores_dia) ? array_sum($valores_dia[$claveExterior]) : 0;
     #print("<pre>".print_r($valores_dia,true)."</pre>"); 
     $total_noche = is_array($valores_noche) ? array_sum($valores_noche[$claveExterior]) : 0;
