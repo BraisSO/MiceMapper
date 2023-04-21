@@ -148,7 +148,7 @@ function creacionTablaDatos($tipoDeDato, $data)
 
 
 
-        if ($arrayInterior[$i]['time_']  >= "18:00") {
+        if ($arrayInterior[$i]['time_'] > "08:00" || $arrayInterior[$i]['time_'] <= "20:00") {
             foreach ($data as  $arrayInterior2) {
                 echo "<td>";
 
@@ -506,3 +506,138 @@ function filtradosDiasYNoches($tipoDeDato, $data)
         echo "</table>";
     }
 }
+
+
+
+
+
+
+
+
+
+/*REVISAR SI FUNCIONA E REVISAR OS TR*/
+function filtradosDiasYNoches2($tipoDeDato, $data)
+{
+    if (isset($_GET['filtrarFechas'])) {
+        $fechaInicio = $_GET['fechaInicio'];
+        $fechaInicio = new DateTime($fechaInicio);
+        $fechaInicio = $fechaInicio->format('d/m/Y');
+
+        $fechaFinal = $_GET['fechaFinal'];
+        $fechaFinal = new DateTime($fechaFinal);
+        $fechaFinal = $fechaFinal->format('d/m/Y');
+
+        $horaInicio = $_GET['horaInicio'];
+        $horaFinal = $_GET['horaFinal'];
+
+        // Creación de la cabecera HTML
+        echo "<table>";
+        echo "<caption>$tipoDeDato</caption>";
+        echo "<thead>";
+        echo "<tr>";
+        echo "<th>Date</th>";
+        echo "<th>Time</th>";
+        foreach ($data as $claveExterior => $arrayInterior) {
+            echo "<th>Box " . $claveExterior  . "<br>" . "(Animal no." . $arrayInterior[$claveExterior]['animals_no'] . ")" . "</th>";
+        }
+        echo "</tr>";
+        echo "</thead>";
+        echo "<tbody>";
+
+        // Inicializamos los arreglos para almacenar los valores de las columnas
+        $valores_dia = array();
+        $valores_noche = array();
+        foreach ($data as $claveExterior => $arrayInterior) {
+            // Obtenemos el número de filas necesarias para esta caja
+            $num_filas = count($arrayInterior);
+        }
+
+        // Recorremos las filas y creamos las celdas para cada columna
+        for ($i = 0; $i < $num_filas; $i++) {
+            // Comprobamos si la fila cumple el criterio de horario
+            if (
+                $arrayInterior[$i]['dates'] >= $fechaInicio && $arrayInterior[$i]['dates'] <= $fechaFinal && (
+                    ($arrayInterior[$i]['dates'] == $fechaInicio && $arrayInterior[$i]['time_'] >= $horaInicio) ||
+                    ($arrayInterior[$i]['dates'] == $fechaFinal && $arrayInterior[$i]['time_'] <= $horaFinal) ||
+                    ($arrayInterior[$i]['dates'] != $fechaInicio && $arrayInterior[$i]['dates'] != $fechaFinal)
+                )
+            ) {
+                // Agregamos fecha y hora
+                $fila = "<tr>";
+                $fila .= "<td>" . $arrayInterior[$i]['dates'] . "</td>";
+                $fila .= "<td>" . $arrayInterior[$i]['time_'] . "</td>";
+
+                // Agregamos los datos de cada caja y actualizamos los arreglos de valores
+                foreach ($data as $claveExterior2 => $arrayInterior2) {
+                    if ($arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
+                        $valor = isset($arrayInterior2[$i][$tipoDeDato]) ? $arrayInterior2[$i][$tipoDeDato] : 0;
+                        if (!isset($valores_noche[$claveExterior2])) {
+                            $valores_noche[$claveExterior2] = array();
+                        }
+                        $valores_noche[$claveExterior2][] = $valor;
+                        $fila .= "<td style='background-color: #C8C8C8;'>" . $valor . "</td>";
+                    } else {
+                        $valor = isset($arrayInterior2[$i][$tipoDeDato]) ? $arrayInterior2[$i][$tipoDeDato] : 0;
+                        if (!isset($valores_dia[$claveExterior2])) {
+                            $valores_dia[$claveExterior2] = array();
+                        }
+                        $valores_dia[$claveExterior2][] = $valor;
+                        $fila .= "<td>" . $valor . "</td>";
+                    }
+                
+            
+            
+        }
+    }    
+            
+    // Cerramos la fila
+    $fila .= "</tr>";
+    echo $fila;
+}
+
+// Cerramos la tabla y mostramos los totales por caja
+echo "</tbody>";
+
+
+echo "<tr>";
+echo "<th>Media</th>";
+echo "<th></th>";
+foreach ($data as $claveExterior => $arrayInterior) {
+    #A MEDIA FUNCIONA CORRECTAMENTE -> ENCONTRAR POR CULPA DO ARRAY E SI ESO QUE SE IMPRIMAN EN ORDEN DE DIA E NOITE
+    ####################
+    ######################
+    #######################
+   # print("<pre>".print_r($valores_dia[],true)."</pre>"); 
+   # print("<pre>".print_r($valores_noche,true)."</pre>");  
+   # print("<pre>".print_r($claveExterior,true)."</pre>");   
+
+
+    $total_dia = is_array($valores_dia) ? array_sum($valores_dia[$claveExterior]) : 0;
+    #print("<pre>".print_r($valores_dia,true)."</pre>"); 
+    $total_noche = is_array($valores_noche) ? array_sum($valores_noche[$claveExterior]) : 0;
+
+    $media_dia = $total_dia / count($valores_dia[$claveExterior]);
+    $media_noche =  $total_noche / count($valores_noche[$claveExterior]);
+
+    echo "<th>Dia " . number_format($media_dia,2) . " / Noche " . number_format($media_noche,2) . "</th>";
+}
+
+
+echo "<tr>";
+echo "<th>Acumulada</th>";
+echo "<th></th>";
+$acumulado_dia = 0;
+$acumulado_noche = 0;
+foreach ($data as $claveExterior => $arrayInterior) {
+
+    $total_dia = is_array($valores_dia) ? array_sum($valores_dia[$claveExterior]) : 0;
+    $total_noche = is_array($valores_noche) ? array_sum($valores_noche[$claveExterior]) : 0;
+
+    $acumulado_dia = $total_dia * 0.5 + $acumulado_dia;
+    $acumulado_noche = $total_noche * 0.5 + $acumulado_noche;
+
+    echo "<th>Dia " . number_format($acumulado_dia,2) . " / Noche " . number_format($acumulado_noche,2) . "</th>";
+}
+echo "</tr>";
+echo "</table>";
+}}

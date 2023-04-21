@@ -93,7 +93,7 @@
             $data = recuperarDatosBD($conn);
 
             //Los mostramos pasando por parametro el dato a renderizar y el array de datos
-            filtradosDiasYNoches("vo2_1", $data);
+            filtradosDiasYNoches2("vo2_1", $data);
             creacionTablaDatos("vo2_1", $data);
             creacionTablaDatosDiaYNoche("vo2_1", $data);
             tablaHorasFiltradas("ref_co2", $data);
