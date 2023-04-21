@@ -71,6 +71,14 @@
 </style>
 
 <body>
+<form action="PruebaFunciones.php" method="get">
+    <input type="date" name="fechaInicio">
+    <input type="date" name="fechaFinal">
+    <input type="time" name="horaInicio">
+    <input type="time" name="horaFinal">
+    <button type="submit" name="filtrarFechas">Filtrar</button>
+    </form>
+
 
     <?php
     include "LibreriaFunciones.php";
@@ -85,39 +93,13 @@
             $data = recuperarDatosBD($conn);
 
             //Los mostramos pasando por parametro el dato a renderizar y el array de datos
-            creacionTablaDatosDiaYNocheSaltandoHastaLasOcho("s_flow", $data);
-            creacionTablaDatosDiaYNocheSaltandoHastaLasOcho("ref_o2", $data);
-            creacionTablaDatosDiaYNocheSaltandoHastaLasOcho("ref_co2", $data);
-            creacionTablaDatosDiaYNoche("flow", $data);
-            creacionTablaDatosDiaYNoche("temp", $data);
-            creacionTablaDatosDiaYNoche("o2", $data);
-            creacionTablaDatosDiaYNoche("co2", $data);
-            creacionTablaDatosDiaYNoche("d_o2", $data);
-            creacionTablaDatosDiaYNoche("d_co2", $data);
+            filtradosDiasYNoches("vo2_1", $data);
+            creacionTablaDatos("vo2_1", $data);
             creacionTablaDatosDiaYNoche("vo2_1", $data);
-            creacionTablaDatosDiaYNoche("vo2_2", $data);
-            creacionTablaDatosDiaYNoche("vo2_3", $data);
-            creacionTablaDatosDiaYNoche("vco2_1", $data);
-            creacionTablaDatosDiaYNoche("vco2_2", $data);
-            creacionTablaDatosDiaYNoche("vco2_3", $data);
-            creacionTablaDatosDiaYNoche("rer", $data);
-            creacionTablaDatosDiaYNoche("h_1", $data);
-            creacionTablaDatosDiaYNoche("h_2", $data);
-            creacionTablaDatosDiaYNoche("h_3", $data);
-            creacionTablaDatosDiaYNoche("xt", $data);
-            creacionTablaDatosDiaYNoche("xa", $data);
-            creacionTablaDatosDiaYNoche("xf", $data);
-            creacionTablaDatosDiaYNoche("z", $data);
-            creacionTablaDatosDiaYNoche("cent", $data);
-            creacionTablaDatosDiaYNoche("cena", $data);
-            creacionTablaDatosDiaYNoche("cenf", $data);
-            creacionTablaDatosDiaYNoche("pert", $data);
-            creacionTablaDatosDiaYNoche("pera", $data);
-            creacionTablaDatosDiaYNoche("perf", $data);
-            creacionTablaDatosDiaYNoche("drink1", $data);
-            creacionTablaDatosDiaYNoche("drink2", $data);
-            creacionTablaDatosDiaYNoche("feed1", $data);
-            creacionTablaDatosDiaYNoche("feed2", $data);
+            tablaHorasFiltradas("ref_co2", $data);
+            creacionTablaDatos("s_flow", $data);
+
+        
 
             // Cerramos la conexión a la BD y al fichero.
             $conn->close();
@@ -132,6 +114,7 @@
         <button>Descargar Excel</button>
     </form>
 
+ 
 </body>
 
 </html>
