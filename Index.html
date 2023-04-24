@@ -1,126 +1,32 @@
-<html>
-  <head>
-    <title>Upload CSV</title>
-    <style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiceMapper</title>
+  <link rel="icon" type="image/x-icon" href="imagenes/miceIcon.ico">
+  <!--Estilos Y Scripts-->
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/script.js"></script>
 
-      .logo{
-        text-align: center;
-        margin-top: 2em;
-      }
-
-      .logo>img{
-        width: 20%;
-        border: 1px solid black;
-      }
-      
-      h2 {
-        margin-top: 3em;
-        text-align: center;
-      }
-
-      .drop-zone {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 200px;
-        border: 2px dashed #ccc;
-        border-radius: 10px;
-        width: 35%;
-        padding: 5em 0px 5em 0px;
-        margin: auto
-      }
-      
-      .drop-zone__prompt {
-        font-size: 18px;
-        font-weight: bold;
-        color: #999;
-      }
-      
-      .drop-zone__input {
-        display: none;
-      }
-
-      .drop-zone__label, .submit-btn{
-        display: inline-block;
-        padding: 8px 20px;
-        background-color: #4CAF50;
-        color: #fff;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      form{
-        text-align: center;
-      }
-
-      .submit-btn{
-        margin-top: 3em;
-    
-      }
-      
-    
-
-    </style>
-  </head>
-  <body>
-
+</head>
+<body>
     <div class="logo">
-      <img src="ImagenesYRecursos/MiceMapper.PNG" alt="MiceMapperLogo">
+      <img src="Imagenes/MiceMapper.PNG" alt="MiceMapperLogo">
     </div>
 
     <div class="drag-area">
       <h2>Upload CSV</h2>
-      <form id="formulario" action="MiceMapperBack.php" method="post" enctype="multipart/form-data">
+      <form id="formulario" action="php/main.php" method="post" enctype="multipart/form-data">
         <div class="drop-zone" id="drop-zone">
-          <span class="drop-zone__prompt" id="drop-zone__prompt">Drag & drop your file here or </span>
+          <span class="drop-zone__prompt" id="drop-zone__prompt">Drag & drop your file here  or </span>
           <label for="csvData" class="drop-zone__label" id="drop-zone__label">Select file</label>
           <input type="file" name="csvData" class="drop-zone__input" id="csvData">
         </div>
-        <button type="submit" class="submit-btn">Upload</button>
+        <button type="submit" class="submit-btn" name="envioCSV">Upload</button>
       </form>
     </div>
-
-    <script>
-      const dropZone = document.querySelector('#drop-zone');
-    
-      dropZone.addEventListener('dragover', e => {
-        e.preventDefault();
-        dropZone.classList.add('drop-zone--over');
-      });
-    
-      dropZone.addEventListener('dragleave', e => {
-        e.preventDefault();
-        dropZone.classList.remove('drop-zone--over');
-      });
-    
-      dropZone.addEventListener('drop', e => {
-        e.preventDefault();
-        dropZone.classList.remove('drop-zone--over');
-        const file = e.dataTransfer.files[0];
-        const input = dropZone.querySelector("#csvData");
-        input.files = e.dataTransfer.files;
-        const prompt = dropZone.querySelector('#drop-zone__prompt');
-        prompt.textContent = file.name;
-      });
-    
-      const fileInput = document.getElementById('csvData');
-      const fakeButton = document.querySelector('#drop-zone__label');
-    
-      fakeButton.addEventListener('click', e => {
-        e.preventDefault();
-        fileInput.click();
-      });
-    
-      fileInput.addEventListener('change', e => {
-        const fileName = e.target.files[0].name;
-        const prompt = dropZone.querySelector('#drop-zone__prompt');
-        prompt.textContent = fileName;
-      });
-    </script>
 
   </body>
 </html>

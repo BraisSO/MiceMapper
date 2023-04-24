@@ -1,0 +1,255 @@
+/*INDEX*/
+/*Logo - Imagenes*/
+.logo {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.logo>img {
+    width: 20%;
+    border: 1px solid black;
+}
+
+h2 {
+    margin-top: 3em;
+    text-align: center;
+}
+
+/*------------*/
+
+/*Drop Areea CSV*/
+.drop-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    width: 35%;
+    padding: 5em 0px 5em 0px;
+    margin: auto;
+    transition: background-color 0.3s ease;
+}
+
+.drop-zone--over {
+    background-color: #f5f5f5;
+}
+
+
+.drop-zone__prompt {
+    font-size: 18px;
+    font-weight: bold;
+    color: #999;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+.drop-zone__label,
+.submit-btn {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form {
+    text-align: center;
+}
+
+.submit-btn {
+    margin-top: 3em;
+
+}
+
+/*------------*/
+
+
+/*MAIN PHP*/
+
+/*Tablas*/
+th,
+tr,
+table,
+td {
+    border: 1px solid black;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+td,
+th {
+    padding: 0.5em;
+}
+
+table {
+    margin: auto;
+
+}
+
+caption {
+    font-weight: bolder;
+    font-size: x-large;
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
+
+.nightCells {
+    background-color: #C8C8C8
+}
+
+/*------------*/
+
+/*Nav*/
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #4CAF50;
+}
+
+nav .download-button button {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+nav .download-button button:hover {
+    background-color: #4CAF50;
+}
+
+/*------------*/
+
+/*Filter*/
+.filterForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.divData {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+input[type="date"] {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+input[type="time"] {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.buttonFilter {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.buttonFilter:hover {
+    background-color: #3e8e41;
+}
+
+.botonesMuestra {
+    background-color: #033e75;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.botonesMuestra:hover {
+    background-color: #1d90d3;
+}
+
+.mainButtons {
+    display: flex;
+    justify-content: start;
+    gap: 1em;
+    margin-left: 3em;
+}
+
+
+/*Checkbox*/
+/*------------*/
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.container label {
+    display: block;
+    padding: 5px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}

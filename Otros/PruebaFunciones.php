@@ -35,6 +35,10 @@
     }    
 
     */
+    
+.nightCells{
+    background-color: #C8C8C8
+}
 
     caption {
         font-weight: bolder;
@@ -68,21 +72,76 @@
     nav li a:hover {
         background-color: #4CAF50;
     }
+
+    form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+input[type="date"] {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+input[type="time"] {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.buttonFilter {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+.buttonFilter:hover {
+  background-color: #3e8e41;
+}
 </style>
 
 <body>
 <form action="PruebaFunciones.php" method="get">
-    <input type="date" name="fechaInicio">
-    <input type="date" name="fechaFinal">
-    <input type="time" name="horaInicio">
-    <input type="time" name="horaFinal">
-    <button type="submit" name="filtrarFechas">Filtrar</button>
-    </form>
+    <div>
+        <label for="fechaInicio">Start:</label>
+        <input type="date" id="fechaInicio" name="fechaInicio" required>
+        <input type="time" name="horaInicio" value="13:30" required>
+    </div>
+
+    <div>
+        <label for="fechaFinal">End:</label>
+        <input type="date" id="fechaFinal" name="fechaFinal" required>
+        <input type="time" name="horaFinal" value="13:30" required>
+    </div>
+
+    <div>
+        <button type="submit" name="filtrarFechas">Filter</button>
+    </div>
+</form>
 
 
     <?php
     include "LibreriaFunciones.php";
     include "Conexion.php";
+    
     ?>
 
     <?php
@@ -93,10 +152,9 @@
             $data = recuperarDatosBD($conn);
 
             //Los mostramos pasando por parametro el dato a renderizar y el array de datos
-            filtradosDiasYNoches2("vo2_1", $data);
+            filtroConMediaYAcumulada("vo2_1", $data);
             creacionTablaDatos("vo2_1", $data);
             creacionTablaDatosDiaYNoche("vo2_1", $data);
-            tablaHorasFiltradas("ref_co2", $data);
             creacionTablaDatos("s_flow", $data);
 
         
@@ -114,7 +172,7 @@
         <button>Descargar Excel</button>
     </form>
 
- 
+
 </body>
 
 </html>
