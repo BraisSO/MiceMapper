@@ -28,7 +28,7 @@
                 <li class="download-button"><button name="descargar">Download all data</button></li>
             </form>
             <li><a href="personalicedDownload.php">Personaliced download</a></li>
-            <li><a href="about.php">About</a></li>
+            <li><a href="../Portfolio/index.html">About</a></li>
         </ul>
     </nav>
 
