@@ -24,10 +24,7 @@
     <nav>
         <ul>
             <li><a href="../index.html">Homepage</a></li>
-            <form action="descargaExcel.php" method="POST">
-                <li class="download-button"><button name="descargar">Download all data</button></li>
-            </form>
-            <li><a href="personalicedDownload.php">Personaliced download</a></li>
+            <li><a href="main.php">Data</a></li>
             <li><a href="../Portfolio/index.html">About</a></li>
         </ul>
     </nav>
