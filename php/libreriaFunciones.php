@@ -147,6 +147,7 @@ function recuperarDatosBD($conexion)
                 'feed2' => $fila['feed2'],
 
                 //print("<pre>".print_r($data,true)."</pre>");   ->Pretty print de los datos del array
+                
 
             );
         }
@@ -336,6 +337,7 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
             // Output formatted date and time
             $fechaHoraFormateada = $fechaHora->format('d/m/Y H:i:s');
 
+            //strcmp($fechaHoraFormateada, $fechaInicioFormateada) >= 0 && strcmp($fechaHoraFormateada, $fechaFinalFormateada) < 0) ->IMPLEMENTAR ESTA CONDICION MELLOR
             if ($fechaHoraFormateada>=$fechaInicioFormateada && $fechaHoraFormateada<$fechaFinalFormateada) {
                 // Agregamos fecha y hora
                 $fila = "<tr>";

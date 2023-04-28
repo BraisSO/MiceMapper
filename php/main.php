@@ -9,7 +9,6 @@
     <title>MiceMapper</title>
     <!--Estilos Y Scripts-->
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/script.js"></script>
 
 </head>
 
