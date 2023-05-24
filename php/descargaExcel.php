@@ -67,7 +67,7 @@
         $conn->close();
     }
 
-
+    //Usando los header imprimimos el fichero en formato excel
     if (isset($_POST['filtrarFechasConMediaYAcumulada'])) {
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment; filename="datos.xls"');

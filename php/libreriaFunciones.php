@@ -161,9 +161,6 @@ function recuperarDatosBD($conexion)
 function creacionTablaDatos($tipoDeDato, $data)
 {
     // Creación de la cabecera HTML
-
-    #Si queremos poner la tabla en horizontal (no queda bien)
-
     echo "<table>
     <caption>$tipoDeDato</caption>
     <thead>
@@ -220,7 +217,7 @@ echo "</tbody>
     </table>";
 
 
-
+//En esta función se busca mostrar todos los datos ordenándolos por días y noches.
 function creacionTablaDatosDiaYNoche($tipoDeDato, $data)
 {
     // Creación de la cabecera HTML
@@ -237,7 +234,7 @@ function creacionTablaDatosDiaYNoche($tipoDeDato, $data)
     echo "</thead>";
     echo "<tbody>";
 
-    // Inicializamos un arreglo temporal para almacenar las filas que cumplen el criterio
+    // Inicializamos un array temporal para almacenar las filas que cumplen el criterio
     $filas_noche = array();
     // Recorremos las filas y creamos las celdas para cada columna
     foreach ($data as $claveExterior => $arrayInterior) {
@@ -262,7 +259,7 @@ function creacionTablaDatosDiaYNoche($tipoDeDato, $data)
             $fila .= "</td>";
         }
         $fila .= "</tr>";
-        // Agregamos la fila al arreglo temporal correspondiente
+        // Agregamos la fila al array temporal correspondiente
         if ($arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
             $filas_noche[] = $fila;
         } else {
@@ -280,7 +277,9 @@ function creacionTablaDatosDiaYNoche($tipoDeDato, $data)
 }
 
 
-
+//Con esta función se busca mostrar solo los datos seleccionados (tipo-fechas), 
+//ordenados por día y noche y de esos datos mostrar además 
+//el calculo de la media y la acumulada.
 function filtroConMediaYAcumulada($tipoDeDato, $data)
 {
     if (isset($_POST['filtrarFechasConMediaYAcumulada'])) {
@@ -289,11 +288,11 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
         $horaInicio = $_POST['horaInicio'];
         $horaFinal = $_POST['horaFinal'];
     
-        // Validate and format date and time values
+        // Inicializamos las variables que contendrán los rangos de fechas que deseamos mostrar
         $fechaHoraInicio = DateTime::createFromFormat('Y-m-d H:i', $fechaInicio . ' ' . $horaInicio);
         $fechaHoraFinal = DateTime::createFromFormat('Y-m-d H:i', $fechaFinal . ' ' . $horaFinal);
     
-        // Format date and time values in the desired format
+        // Les asignamos formato a las fechas para poder manejarlas
         $fechaInicioFormateada = $fechaHoraInicio->format('d/m/Y H:i:s');
         $fechaFinalFormateada = $fechaHoraFinal->format('d/m/Y H:i:s');
 
@@ -313,7 +312,7 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
 
 
 
-        // Inicializamos los arreglos para almacenar los valores de las columnas
+        // Inicializamos los arrays para almacenar los valores de las columnas
         $valores_dia = array();
         $valores_noche = array();
         $filas_noche = array();
@@ -325,26 +324,23 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
 
         // Recorremos las filas y creamos las celdas para cada columna
         for ($i = 0; $i < $num_filas; $i++) {
-            // Comprobamos si la fila cumple el criterio de horario
-            // Create DateTime objects from strings using a custom format
+            // Le damos el mismo formato a las fechas y horas de nuestros datos con el objetivo de compararlas con el rango que seleccionamos
             $fecha = DateTime::createFromFormat('d/m/Y',  $arrayInterior[$i]['dates']);
             $hora = DateTime::createFromFormat('H:i:s', $arrayInterior[$i]['time_']);
 
-            // Combine date and time
+            // Combinamos fecha y hora para hacer la comparativa
             $fechaHora = clone $fecha;
             $fechaHora->setTime($hora->format('H'), $hora->format('i'), $hora->format('s'));
-
-            // Output formatted date and time
             $fechaHoraFormateada = $fechaHora->format('d/m/Y H:i:s');
 
-            //strcmp($fechaHoraFormateada, $fechaInicioFormateada) >= 0 && strcmp($fechaHoraFormateada, $fechaFinalFormateada) < 0) ->IMPLEMENTAR ESTA CONDICION MELLOR
-            if ($fechaHoraFormateada>=$fechaInicioFormateada && $fechaHoraFormateada<$fechaFinalFormateada) {
+            // Hacemos la comparativa entre el rango de fechas y la de nuestros datos, para que se filtre solo lo que esté en el rango
+            if (strcmp($fechaHoraFormateada, $fechaInicioFormateada) >= 0 && strcmp($fechaHoraFormateada, $fechaFinalFormateada) < 0) {
                 // Agregamos fecha y hora
                 $fila = "<tr>";
                 $fila .= "<td>" . $arrayInterior[$i]['dates'] . "</td>";
                 $fila .= "<td>" . $arrayInterior[$i]['time_'] . "</td>";
 
-                // Agregamos los datos de cada caja y actualizamos los arreglos de valores
+                // Agregamos los datos de cada caja y actualizamos los arrays de valores
                 foreach ($data as $claveExterior2 => $arrayInterior2) {
                     if ($arrayInterior[$i]['time_'] < "08:00" || $arrayInterior[$i]['time_'] >= "20:00") {
                         $valor = isset($arrayInterior2[$i][$tipoDeDato]) ? $arrayInterior2[$i][$tipoDeDato] : 0;
@@ -370,12 +366,13 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
                 }
             }
         }
-        // Imprimimos las filas que cumplen el criterio de horario
+        // Imprimimos las filas correspondientes a la noche al final
         foreach ($filas_noche as $fila) {
             echo $fila;
         }
 
-        // Cerramos la tabla y mostramos los totales por caja
+        // Como tenemos ya unos arrays con los datos separados por día y noche
+        //realizamos el calculo de dichas medias
         if(!empty($valores_dia) && !empty($valores_noche)){
         echo "</tbody>";
         echo "<tr>";
@@ -397,7 +394,7 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
             echo "<th>" . number_format($media_noche, 2) . "</th>";
         }
 
-
+        //Hacemos el mismo proceso con la acumulada
         echo "<tr>";
         echo "<th rowspan=2>Acumulada</th>";
         echo "<th>Día</th>";

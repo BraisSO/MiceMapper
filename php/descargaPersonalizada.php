@@ -13,6 +13,8 @@
 
 </head>
 
+<!--Esta página sirve para filtrar la descarga del excel, dejándote escoger que parametros deseas descargar-->
+
 <body>
 
     <?php

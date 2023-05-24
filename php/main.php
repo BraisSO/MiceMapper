@@ -19,7 +19,7 @@
     include "Conexion.php";
     ?>
 
-
+    <!-- Menu de navegación -->
     <nav>
         <ul>
             <li><a href="../index.html">Homepage</a></li>
@@ -54,6 +54,7 @@
             <input type="time" name="horaFinal" value="13:30" required>
         </div>
 
+    <!--Checkbox para los filtros-->
         <div class="container">
         <label>
             <input type="checkbox" name="s_flow"> s_flow
@@ -167,7 +168,6 @@
     <?php
     if (isset($_POST['envioCSV'])) {
         //GESTION INICIAL DE LA BASE DE DATOS
-
         // Eliminación de la base de datos si ya existe
         $sql = "DROP DATABASE IF EXISTS miceDB";
         $conn->query($sql);
@@ -291,7 +291,7 @@
         $conn = new mysqli($servername, $username, $password, "miceDB");
         $data = recuperarDatosBD($conn);
 
-        //Los mostramos pasando por parametro el dato a renderizar y el array de datos
+        //Mostramos todos los datos
         creacionTablaDatos("s_flow", $data);
         creacionTablaDatos("ref_o2", $data);
         creacionTablaDatos("ref_co2", $data);
@@ -330,9 +330,11 @@
         }
 
     if (isset($_POST['diasYNoches'])) {
+        //Recuperamos los datos 
         $conn = new mysqli($servername, $username, $password, "miceDB");
         $data = recuperarDatosBD($conn);
         
+        //Mostramos todos los datos ordenados por días y por noches
         creacionTablaDatosDiaYNoche("s_flow", $data);
         creacionTablaDatosDiaYNoche("ref_o2", $data);
         creacionTablaDatosDiaYNoche("ref_co2", $data);
@@ -371,9 +373,11 @@
     }
 
     if (isset($_POST['filtrarFechasConMediaYAcumulada'])) {
+        //Recuperamos los datos
         $conn = new mysqli($servername, $username, $password, "miceDB");
         $data = recuperarDatosBD($conn);
 
+        //Mostramos únicamente aquellos datos que el usuario haya seleccionado, así como la media y la acumulada de dichos datos.
         if (isset($_POST['s_flow'])) {
             filtroConMediaYAcumulada("s_flow", $data);
         }
