@@ -58,6 +58,7 @@ h2 {
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 form {
@@ -89,6 +90,11 @@ th {
     padding: 0.5em;
 }
 
+td:hover,th:hover{
+    box-shadow: 0 0 10px #4CAF50;
+    border: 1px solid #4CAF50;
+}
+
 table {
     margin: auto;
 
@@ -103,6 +109,41 @@ caption {
 
 .nightCells {
     background-color: #C8C8C8
+}
+
+.media:hover{
+    background-color: hsla(202, 76%, 47%, 0.9);
+}
+
+
+.acumulada:hover{
+    background-color: hsla(327, 76%, 47%, 0.9);
+}
+
+
+.dia:hover{
+    background-color:rgba(233, 223, 83, 0.9) ;
+}
+
+.noche:hover{
+    background-color: rgba(175, 24, 175, 0.8);
+}
+
+.mediaDia:hover{
+    background-color: rgba(233, 223, 83, 0.9);
+    box-shadow: 0 0 0 #ffffff;
+    border: 1px solid #000000;
+}
+
+.media:hover, .acumulada:hover, .dia:hover, .noche:hover {
+    box-shadow: 0 0 0 #ffffff;
+    border: 1px solid #000000;
+}
+
+.mediaNoche:hover{
+    background-color: rgba(175, 24, 175, 0.8);
+    box-shadow: 0 0 0 #ffffff;
+    border: 1px solid #000000;
 }
 
 /*------------*/
