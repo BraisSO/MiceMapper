@@ -376,44 +376,44 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
         if(!empty($valores_dia) && !empty($valores_noche)){
         echo "</tbody>";
         echo "<tr>";
-        echo "<th rowspan=2>Media</th>";
-        echo "<th>Día</th>";
+        echo "<th rowspan=2 class='media'>Media</th>";
+        echo "<th class='dia'>Día</th>";
         foreach ($data as $claveExterior => $arrayInterior) {
             $total_dia = is_array($valores_dia) ? array_sum($valores_dia[$claveExterior]) : 0;
             $media_dia = $total_dia / count($valores_dia[$claveExterior]);
 
-            echo "<th>" . number_format($media_dia, 2) . "</th>";
+            echo "<th class='mediaDia'>" . number_format($media_dia, 2) . "</th>";
         }
 
         echo "<tr>";
-        echo "<th>Noche</th>";
+        echo "<th class='noche'>Noche</th>";
         foreach ($data as $claveExterior => $arrayInterior) {
             $total_noche = is_array($valores_noche) ? array_sum($valores_noche[$claveExterior]) : 0;
             $media_noche =  $total_noche / count($valores_noche[$claveExterior]);
 
-            echo "<th>" . number_format($media_noche, 2) . "</th>";
+            echo "<th class='mediaNoche'>" . number_format($media_noche, 2) . "</th>";
         }
 
         //Hacemos el mismo proceso con la acumulada
         echo "<tr>";
-        echo "<th rowspan=2>Acumulada</th>";
-        echo "<th>Día</th>";
+        echo "<th rowspan=2 class='acumulada'>Acumulada</th>";
+        echo "<th class='dia'>Día</th>";
         $acumulado_dia = 0;
         foreach ($valores_dia as $value) {
             foreach ($value as $valor) {
                 $acumulado_dia = ($valor * 0.5) + $acumulado_dia;
             }
-            echo "<th>" . number_format($acumulado_dia, 2) . "</th>";
+            echo "<th class='mediaDia'>" . number_format($acumulado_dia, 2) . "</th>";
         }
 
         echo "<tr>";
-        echo "<th>Noche</th>";
+        echo "<th class='noche'>Noche</th>";
         $acumulado_noche = 0;
         foreach ($valores_noche as $value) {
             foreach ($value as $valor) {
                 $acumulado_noche = ($valor * 0.5) + $acumulado_noche;
             }
-            echo "<th>" . number_format($acumulado_noche, 2) . "</th>";
+            echo "<th class='mediaNoche'>" . number_format($acumulado_noche, 2) . "</th>";
         }
     }
 }
