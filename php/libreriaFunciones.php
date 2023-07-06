@@ -421,3 +421,4 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
     echo "</tr>";
     echo "</table>";
 }
+
