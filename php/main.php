@@ -32,136 +32,141 @@
     </nav>
 
     <div class="mainButtons">
-    <form action="main.php" method="POST">
-        <button type="submit" class="botonesMuestra" name="mostrarTodo">View All</button>
-    </form>
+        <form action="main.php" method="POST">
+            <button type="submit" class="botonesMuestra" name="mostrarTodo">View All</button>
+        </form>
 
-    <form action="main.php" method="POST">
-        <button type="submit" class="botonesMuestra" name="diasYNoches">Day & Night</button>
-    </form>
+        <form action="main.php" method="POST">
+            <button type="submit" class="botonesMuestra" name="diasYNoches">Day & Night</button>
+        </form>
     </div>
-    
+
     <form class="filterForm" action="main.php" method="POST">
-        <div class="divData">
-            <label for="fechaInicio">Start:</label>
-            <input type="date" id="fechaInicio" name="fechaInicio" required>
-            <input type="time" name="horaInicio" value="13:30" required>
+        <div class="accordion">
+            <button type="button" class="accordion-toggle">Filter</button>
+            <div class="accordion-content">
+                <div class="divData">
+                    <label for="fechaInicio">Start:</label>
+                    <input type="date" id="fechaInicio" name="fechaInicio" required>
+                    <input type="time" name="horaInicio" value="13:30" required>
+                </div>
+
+                <div class="divData">
+                    <label for="fechaFinal">End:</label>
+                    <input type="date" id="fechaFinal" name="fechaFinal" required>
+                    <input type="time" name="horaFinal" value="13:30" required>
+                </div>
+
+                <!--Checkbox para los filtros-->
+                <div class="container">
+                    <label>
+                        <input type="checkbox" name="s_flow"> s_flow
+                    </label>
+                    <label>
+                        <input type="checkbox" name="ref_o2"> ref_o2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="ref_co2"> ref_co2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="flow"> flow
+                    </label>
+                    <label>
+                        <input type="checkbox" name="temp"> temp
+                    </label>
+                    <label>
+                        <input type="checkbox" name="o2"> o2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="co2"> co2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="d_o2"> d_o2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="d_co2"> d_co2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vo2_1"> vo2_1
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vo2_2"> vo2_2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vo2_3"> vo2_3
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vco2_1"> vco2_1
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vco2_2"> vco2_2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="vco2_3"> vco2_3
+                    </label>
+                    <label>
+                        <input type="checkbox" name="rer"> rer
+                    </label>
+                    <label>
+                        <input type="checkbox" name="h_1"> h_1
+                    </label>
+                    <label>
+                        <input type="checkbox" name="h_2"> h_2
+                    </label>
+                    <label>
+                        <input type="checkbox" name="h_3"> h_3
+                    </label>
+                    <label>
+                        <input type="checkbox" name="xt"> xt
+                    </label>
+                    <label>
+                        <input type="checkbox" name="xa"> xa
+                    </label>
+                    <label>
+                        <input type="checkbox" name="xf"> xf
+                    </label>
+                    <label>
+                        <input type="checkbox" name="z"> z
+                    </label>
+                    <label>
+                        <input type="checkbox" name="cent"> cent
+                    </label>
+                    <label>
+                        <input type="checkbox" name="cena"> cena
+                    </label>
+                    <label>
+                        <input type="checkbox" name="cenf"> cenf
+                    </label>
+                    <label>
+                        <input type="checkbox" name="pert"> pert
+                    </label>
+                    <label>
+                        <input type="checkbox" name="pera"> pera
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="perf"> perf
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="drink1"> drink1
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="drink2"> drink2
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="feed1"> feed1
+                    </label>
+                    <label>
+                        <input type="checkbox" name="feed2"> feed2
+                    </label>
+                </div>
+                <button type="submit" class="buttonFilter" name="filtrarFechasConMediaYAcumulada">Submit</button>
+            </div>
         </div>
 
-        <div class="divData">
-            <label for="fechaFinal">End:</label>
-            <input type="date" id="fechaFinal" name="fechaFinal" required>
-            <input type="time" name="horaFinal" value="13:30" required>
-        </div>
-
-    <!--Checkbox para los filtros-->
-        <div class="container">
-        <label>
-            <input type="checkbox" name="s_flow"> s_flow
-        </label>
-        <label>
-            <input type="checkbox" name="ref_o2"> ref_o2
-        </label>
-        <label>
-            <input type="checkbox" name="ref_co2"> ref_co2
-        </label>
-        <label>
-            <input type="checkbox" name="flow"> flow
-        </label>
-        <label>
-            <input type="checkbox" name="temp"> temp
-        </label>
-        <label>
-            <input type="checkbox" name="o2"> o2
-        </label>
-        <label>
-            <input type="checkbox" name="co2"> co2
-        </label>
-        <label>
-            <input type="checkbox" name="d_o2"> d_o2
-        </label>
-        <label>
-            <input type="checkbox" name="d_co2"> d_co2
-        </label>
-        <label>
-            <input type="checkbox" name="vo2_1"> vo2_1
-        </label>
-        <label>
-            <input type="checkbox" name="vo2_2"> vo2_2
-        </label>
-        <label>
-            <input type="checkbox" name="vo2_3"> vo2_3
-        </label>
-        <label>
-            <input type="checkbox" name="vco2_1"> vco2_1
-        </label>
-        <label>
-            <input type="checkbox" name="vco2_2"> vco2_2
-        </label>
-        <label>
-            <input type="checkbox" name="vco2_3"> vco2_3
-        </label>
-        <label>
-            <input type="checkbox" name="rer"> rer
-        </label>
-        <label>
-            <input type="checkbox" name="h_1"> h_1
-        </label>
-        <label>
-            <input type="checkbox" name="h_2"> h_2
-        </label>
-        <label>
-            <input type="checkbox" name="h_3"> h_3
-        </label>
-        <label>
-            <input type="checkbox" name="xt"> xt
-        </label>
-        <label>
-            <input type="checkbox" name="xa"> xa
-        </label>
-        <label>
-            <input type="checkbox" name="xf"> xf
-        </label>
-        <label>
-            <input type="checkbox" name="z"> z
-        </label>
-        <label>
-            <input type="checkbox" name="cent"> cent
-        </label>
-        <label>
-            <input type="checkbox" name="cena"> cena
-        </label>
-        <label>
-            <input type="checkbox" name="cenf"> cenf
-        </label>
-        <label>
-            <input type="checkbox" name="pert"> pert
-        </label>
-        <label>
-            <input type="checkbox" name="pera"> pera
-        </label>
-
-        <label>
-            <input type="checkbox" name="perf"> perf
-        </label>
-
-        <label>
-            <input type="checkbox" name="drink1"> drink1
-        </label>
-
-        <label>
-            <input type="checkbox" name="drink2"> drink2
-        </label>
-
-        <label>
-            <input type="checkbox" name="feed1"> feed1
-        </label>
-        <label>
-            <input type="checkbox" name="feed2"> feed2
-        </label>
-        </div>
-            <button type="submit" class="buttonFilter" name="filtrarFechasConMediaYAcumulada">Filter</button>
-            
     </form>
 
 
@@ -237,7 +242,7 @@
                     insertData($data, $conn);
                 }
 
-                 // Cerramos la conexión a la BD y al fichero.
+                // Cerramos la conexión a la BD y al fichero.
                 fclose($file);
 
                 /*echo "<p style='text-align:center'><img src='https://media.tenor.com/aZaBI_yXoXUAAAAM/dorime-rat-dancing.gif'></p>";*/  // -> .GIF que se colocó tras el primer volcado existoso de datos
@@ -285,8 +290,8 @@
         }
     }
 
-    
-    if(isset($_POST['mostrarTodo'])){
+
+    if (isset($_POST['mostrarTodo'])) {
         //Recuperamos los Datos
         $conn = new mysqli($servername, $username, $password, "miceDB");
         $data = recuperarDatosBD($conn);
@@ -327,13 +332,13 @@
         creacionTablaDatos("feed2", $data);
 
         $conn->close();
-        }
+    }
 
     if (isset($_POST['diasYNoches'])) {
         //Recuperamos los datos 
         $conn = new mysqli($servername, $username, $password, "miceDB");
         $data = recuperarDatosBD($conn);
-        
+
         //Mostramos todos los datos ordenados por días y por noches
         creacionTablaDatosDiaYNoche("s_flow", $data);
         creacionTablaDatosDiaYNoche("ref_o2", $data);
@@ -478,7 +483,7 @@
         if (isset($_POST['perf'])) {
             filtroConMediaYAcumulada("perf", $data);
         }
-        
+
         if (isset($_POST['drink1'])) {
             filtroConMediaYAcumulada("drink1", $data);
         }
@@ -492,12 +497,12 @@
         if (isset($_POST['feed2'])) {
             filtroConMediaYAcumulada("feed2", $data);
         }
-        
+
         $conn->close();
     }
-
     ?>
 
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

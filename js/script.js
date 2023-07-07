@@ -38,3 +38,11 @@ window.onload=function(){
     
 }
 /*------------*/
+
+
+/*Accordion*/
+document.querySelector('.accordion-toggle').addEventListener('click', function() {
+    var accordionContent = document.querySelector('.accordion-content');
+    accordionContent.style.display = accordionContent.style.display === 'block' ? 'none' : 'block';
+});
+/*------------*/
