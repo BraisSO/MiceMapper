@@ -9,10 +9,10 @@
     <title>MiceMapper</title>
     <!--Estilos Y Scripts-->
     <link rel="stylesheet" href="../css/styles.css">
-
+    <script src="../js/script.js"></script>
 </head>
 
-<body>
+<body onload="filterDisplay()">
 
     <?php
     include "LibreriaFunciones.php";
@@ -502,7 +502,6 @@
     }
     ?>
 
-    <script src="../js/script.js"></script>
 </body>
 
 </html>

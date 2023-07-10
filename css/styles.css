@@ -98,6 +98,7 @@ th:hover {
 
 table {
     margin: auto;
+    width: 94%;
 
 }
 
@@ -132,8 +133,7 @@ caption {
 }
 
 .mediaDia:hover {
-    background-color: rgba(233, 223, 83, 0.9);
-    box-shadow: 0 0 0 #ffffff;
+    box-shadow: 0 0 10px rgba(105, 98, 1, 0.9);
     border: 1px solid #000000;
 }
 
@@ -141,13 +141,12 @@ caption {
 .acumulada:hover,
 .dia:hover,
 .noche:hover {
-    box-shadow: 0 0 0 #ffffff;
+    box-shadow: 0 0 10px #ffffff;
     border: 1px solid #000000;
 }
 
 .mediaNoche:hover {
-    background-color: rgba(175, 24, 175, 0.8);
-    box-shadow: 0 0 0 #ffffff;
+    box-shadow: 0 0 10px rgba(175, 24, 175, 0.8);
     border: 1px solid #000000;
 }
 

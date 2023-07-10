@@ -1,5 +1,5 @@
 /*Drop Area*/
-window.onload=function(){
+function dropZone(){
     const dropZone = document.querySelector('#drop-zone');
 
     dropZone.addEventListener('dragover', e => {
@@ -41,8 +41,10 @@ window.onload=function(){
 
 
 /*Accordion*/
+function filterDisplay(){
 document.querySelector('.accordion-toggle').addEventListener('click', function() {
     var accordionContent = document.querySelector('.accordion-content');
     accordionContent.style.display = accordionContent.style.display === 'block' ? 'none' : 'block';
 });
+}
 /*------------*/
