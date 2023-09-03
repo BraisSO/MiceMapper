@@ -404,6 +404,7 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
                 $acumulado_dia = ($valor * 0.5) + $acumulado_dia;
             }
             echo "<th class='mediaDia'>" . number_format($acumulado_dia, 2) . "</th>";
+            acumulado_dia = 0;
         }
 
         echo "<tr>";
@@ -414,6 +415,7 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
                 $acumulado_noche = ($valor * 0.5) + $acumulado_noche;
             }
             echo "<th class='mediaNoche'>" . number_format($acumulado_noche, 2) . "</th>";
+            $acumulado_noche = 0;
         }
     }
 }
