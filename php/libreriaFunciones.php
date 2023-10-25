@@ -291,10 +291,6 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
         // Inicializamos las variables que contendrán los rangos de fechas que deseamos mostrar
         $fechaHoraInicio = DateTime::createFromFormat('Y-m-d H:i', $fechaInicio . ' ' . $horaInicio);
         $fechaHoraFinal = DateTime::createFromFormat('Y-m-d H:i', $fechaFinal . ' ' . $horaFinal);
-    
-        // Les asignamos formato a las fechas para poder manejarlas
-        $fechaInicioFormateada = $fechaHoraInicio->format('d/m/Y H:i:s');
-        $fechaFinalFormateada = $fechaHoraFinal->format('d/m/Y H:i:s');
 
         // Creación de la cabecera HTML
         echo "<table>";
@@ -331,10 +327,9 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
             // Combinamos fecha y hora para hacer la comparativa
             $fechaHora = clone $fecha;
             $fechaHora->setTime($hora->format('H'), $hora->format('i'), $hora->format('s'));
-            $fechaHoraFormateada = $fechaHora->format('d/m/Y H:i:s');
 
             // Hacemos la comparativa entre el rango de fechas y la de nuestros datos, para que se filtre solo lo que esté en el rango
-            if (strcmp($fechaHoraFormateada, $fechaInicioFormateada) >= 0 && strcmp($fechaHoraFormateada, $fechaFinalFormateada) < 0) {
+            if ($fechaHora > $fechaHoraInicio && $fechaHora < $fechaHoraFinal) {
                 // Agregamos fecha y hora
                 $fila = "<tr>";
                 $fila .= "<td>" . $arrayInterior[$i]['dates'] . "</td>";
@@ -404,7 +399,7 @@ function filtroConMediaYAcumulada($tipoDeDato, $data)
                 $acumulado_dia = ($valor * 0.5) + $acumulado_dia;
             }
             echo "<th class='mediaDia'>" . number_format($acumulado_dia, 2) . "</th>";
-            acumulado_dia = 0;
+            $acumulado_dia = 0;
         }
 
         echo "<tr>";
